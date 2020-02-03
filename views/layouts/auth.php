@@ -71,7 +71,7 @@ ItAppAsset::register($this);
     </div>
     </div>
 </section>
-<?echo \app\controllers\AppController::Inf()/*Yii::$app->controller->ymetr*/;?>
+<?//echo \app\controllers\AppController::Inf()/*Yii::$app->controller->ymetr*/;?>
 
 
 

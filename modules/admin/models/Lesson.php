@@ -33,7 +33,7 @@ class Lesson extends \yii\db\ActiveRecord
     {
         return [
             [['content'], 'string'],
-            [['user_id_create', 'user_id_update','publish'], 'integer'],
+            [['user_id_create', 'user_id_update'], 'integer'],
             [['date_create', 'date_update'], 'safe'],
             [['name', 'comment'], 'string', 'max' => 255],
         ];
@@ -45,7 +45,7 @@ class Lesson extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'Идентификатор',
+            'id' => 'ID',
             'name' => 'Имя',
             'content' => 'Статья',
             'user_id_create' => 'Автор',
