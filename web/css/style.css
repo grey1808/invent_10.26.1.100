@@ -1,0 +1,148 @@
+body{
+    font-size: 16px;
+    font-family: Ubuntu, Areal, sans-serif;
+}
+h1{
+
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+h2{
+
+}
+
+h3{
+
+}
+
+h4{
+
+}
+
+p{
+
+}
+
+.btn{
+
+}
+
+a{
+
+}
+a:hover{
+
+}
+a:focus{
+
+}
+
+
+#header {
+    background-color: #4F5E90;
+    color: #ffffff;
+}
+
+#header .navbar-default{
+    background-color: #4F5E90;
+    border-color: #4F5E90;
+    margin-bottom: 0;
+}
+
+#header .navbar-default .navbar-nav > li > a{
+    color: #FEE659;
+}
+
+#header .navbar-default .navbar-brand:focus,
+#header .navbar-default .navbar-brand{
+    color: #FEE659;
+    font-weight: 600;
+}
+
+#header .navbar-default .navbar-nav > .open > a,
+#header .navbar-default .navbar-nav > .open > a:focus,
+#header .navbar-default .navbar-nav > .open > a:hover{
+    background-color: #4F5E90;
+}
+
+
+
+
+
+
+
+#content{
+
+    min-height: 100vh;
+}
+
+
+#content .menu {
+    background-color: #ececec;
+    color:  #ffffff;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+#content .header-h1{
+    background-color: #3CA5D5;
+    color: #ffffff;
+    padding-left: 15px;
+}
+#content .menu ul:first-child {
+    padding-left: 0;
+}
+#content .menu ul {
+    padding-left: 15px;
+}
+#content .menu li{
+    list-style-type: none;
+}
+#content .menu a{
+    text-decoration: none;
+}
+
+#content .table{
+    font-size: 14px;
+}
+#content .table tr{
+    /*cursor: pointer;*/
+}
+#content .table .btn{
+    padding: 0px 3px;
+}
+
+
+
+
+
+#footer-bottom{
+    bottom: 0;
+}
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+
+}

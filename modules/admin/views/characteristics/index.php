@@ -1,0 +1,66 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\modules\admin\models\CharacteristicsSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Характеристики';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="characteristics-index">
+
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Добавить характеристику', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+//            'id',
+            'name',
+            [
+                'attribute'=>'type_id',
+                'value'=>function($data){
+                    return $data -> characteristicsType->name ? $data->characteristicsType->name : 'Не указан';
+                }
+            ],
+            'comment',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия',
+                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'view' => function ($url) {
+                        return Html::a(
+                            '<button type="button" class="btn btn-info"title="Просмотр"><i class="glyphicon glyphicon-eye-open"></i></button>',
+                            $url);
+                    },
+                    'update' => function ($url) {
+                        return Html::a(
+                            '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalTrEdit" title="Редактировать"><i class="glyphicon glyphicon-pencil"></i></button>',
+                            $url);
+                    },
+                    'delete' => function ($url) {
+                        return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url,
+                            [
+                                'class' => 'btn btn-danger btn-a',
+                                'data' => [
+                                    'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+                                    'method' => 'post',
+                                ],
+                            ]);
+                    },
+                ],
+            ],
+        ],
+    ]); ?>
+</div>
