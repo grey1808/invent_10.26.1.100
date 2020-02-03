@@ -45,7 +45,7 @@ class Lesson extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'Идентификатор',
             'name' => 'Имя',
             'content' => 'Статья',
             'user_id_create' => 'Автор',
