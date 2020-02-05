@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\ElFinder;
+use mihaildev\elfinder\InputFile;
+use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Lesson */
@@ -15,22 +18,11 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-
-    <?= $form->field($model, 'content')->widget(CKEditor::className(),[
-        'editorOptions' => [
-            'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
-            'inline' => false, //по умолчанию false
-        ],
-    ]); ?>
-
-    <?= $form->field($model, 'user_id_create')->textInput() ?>
-
-    <?= $form->field($model, 'user_id_update')->textInput() ?>
-
-    <?= $form->field($model, 'date_create')->textInput() ?>
-
-    <?= $form->field($model, 'date_update')->textInput() ?>
-
+    <?=
+        $form->field($model, 'content')->widget(CKEditor::className(), [
+            'editorOptions' => ElFinder::ckeditorOptions('elfinder',[]),
+        ]);
+    ?>
     <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">

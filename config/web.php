@@ -66,6 +66,16 @@ $config = [
             ],
         ],
     ],
+    'controllerMap' => [ // CKEditor загрузка картинок
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\PathController',
+            'access' => ['@'],//глобальный доступ к фаил менеджеру @ - для авторизорованных , ? - для гостей , чтоб открыть всем ['@', '?']
+            'root' => [
+                'path' => 'upload/global',
+                'name' => 'Global'
+            ],
+        ]
+    ],
     'params' => $params,
 ];
 
