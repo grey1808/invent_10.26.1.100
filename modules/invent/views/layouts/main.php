@@ -65,7 +65,7 @@ ItAppAsset::register($this);
                             <li><a href="<?=Url::base(true).'/invent/servers'?>">Серверы</a></li>
                             <li><a href="<?=Url::base(true).'/invent/token'?>">ЭЦП</a></li>
                             <li><a href="<?=Url::base(true).'/invent/accounts'?>">Аккаунты</a></li>
-<!--                            <li><a href="--><?//=Url::base(true).'/invent/lesson'?><!--">Методичка</a></li>-->
+                            <li><a href="<?=Url::base(true).'/invent/lesson'?>">Статьи</a></li>
 <!--                            <li><a href="#">Отчеты</a></li>-->
                         </ul>
                         <ul class="nav navbar-nav navbar-right">

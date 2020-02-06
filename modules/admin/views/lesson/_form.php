@@ -16,13 +16,23 @@ use yii\web\JsExpression;
 
     <?php $form = ActiveForm::begin(); ?>
 
+
+    <div class="form-group field-category_less_id has-success">
+        <label class="control-label" for="category_less_id-category_less_id">Категория</label>
+        <select id="category_less_id-category_less_id" class="form-control" name="Lesson[category_less_id]">
+            <option value="0">Выбор категории</option>
+            <?= \app\components\CategorylessWidget::widget(['tpl' => 'select_admin_lesson', 'model' => $model])?>
+        </select>
+    </div>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?=
-        $form->field($model, 'content')->widget(CKEditor::className(), [
-            'editorOptions' => ElFinder::ckeditorOptions('elfinder',[]),
-        ]);
+    $form->field($model, 'content')->widget(CKEditor::className(), [
+        'editorOptions' => ElFinder::ckeditorOptions('elfinder',[]),
+    ]);
     ?>
+
     <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
@@ -32,3 +42,4 @@ use yii\web\JsExpression;
     <?php ActiveForm::end(); ?>
 
 </div>
+

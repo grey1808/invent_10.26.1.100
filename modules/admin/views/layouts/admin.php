@@ -96,6 +96,7 @@ ItAppAsset::register($this);
                             ['label' => 'Группа RDP', 'url' => ['/admin/rdp-group']],
                             ['label' => 'RDP', 'url' => ['/admin/rdp']],
                             ['label' => 'Серверы', 'url' => ['/admin/servers']],
+                            ['label' => 'Категории статей', 'url' => ['/admin/category-less']],
                             ['label' => 'Статьи', 'url' => ['/admin/lesson']],
                         ],
                     ]);?>

@@ -3,6 +3,7 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "lesson".
@@ -26,6 +27,31 @@ class Lesson extends \yii\db\ActiveRecord
         return 'lesson';
     }
 
+
+    public function getCategoryLess ()
+    {
+        return $this->hasOne(CategoryLess::className(),['id'=>'category_less_id']);
+    }
+
+    public static function getParentsList() {
+        $parents = \app\modules\admin\models\CategoryLess::find()->all();
+        return ArrayHelper::map($parents, 'id', 'name');
+    }
+
+    public function getUserCreate ()
+    {
+        return $this->hasOne(User::className(),['id'=>'user_id_create']);
+    }
+    public static function getUserList() {
+        $parents = \app\modules\admin\models\User::find()->all();
+
+        return ArrayHelper::map($parents, 'id', 'username');
+    }
+    public function getUserUpdate ()
+    {
+        return $this->hasOne(User::className(),['id'=>'user_id_update']);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -33,7 +59,7 @@ class Lesson extends \yii\db\ActiveRecord
     {
         return [
             [['content'], 'string'],
-            [['user_id_create', 'user_id_update'], 'integer'],
+            [['user_id_create', 'user_id_update','category_less_id'], 'integer'],
             [['date_create', 'date_update'], 'safe'],
             [['name', 'comment'], 'string', 'max' => 255],
         ];
@@ -46,6 +72,7 @@ class Lesson extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'category_less_id' => 'Категория',
             'name' => 'Имя',
             'content' => 'Статья',
             'user_id_create' => 'Автор',

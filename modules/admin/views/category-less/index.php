@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\admin\models\LessonSearch */
+/* @var $searchModel app\modules\admin\models\CategoryLessSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Статьи';
+$this->title = 'Category Lesses';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="lesson-index">
+<div class="category-less-index">
 
     <!--<h1><?= Html::encode($this->title) ?></h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Добавить статью', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить категорию', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,32 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
 //            'id',
-            'name',
             [
-                'attribute'=>'category_less_id',
+                'attribute'=>'parent_id',
                 'value'=>function($data){
-                    return isset($data->categoryLess ->name) ? $data->categoryLess->name : 'Корень';
+                    return isset($data->category->name) ? $data->category->name : 'Корневая категория';
                 },
                 'filter' => \app\modules\admin\models\CategoryLess::getParentsList()
             ],
-//            'content:ntext',
-            [
-                'attribute'=>'user_id_create',
-                'value'=>function($data){
-                    return isset($data->userCreate->username) ? $data->userCreate->username : 'Не указан';
-                },
-                'filter' => \app\modules\admin\models\Lesson::getUserList()
-            ],
-//            'user_id_update',
-            [
-                'attribute' => 'date_create',
-                'format' =>  ['date', 'dd.MM.Y H.m'],
-            ],
-            [
-                'attribute' => 'date_update',
-                'format' =>  ['date', 'dd.MM.Y H.m'],
-            ],
-            //'comment',
+            'name',
+            'comment',
 
             [
                 'class' => 'yii\grid\ActionColumn',

@@ -2,29 +2,29 @@
 
 namespace app\modules\admin\controllers;
 
-use app\modules\invent\controllers\AppInventController;
 use Yii;
-use app\modules\admin\models\Lesson;
-use app\modules\admin\models\LessonSearch;
+use app\modules\admin\models\CategoryLess;
+use app\modules\admin\models\CategoryLessSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * LessonController implements the CRUD actions for Lesson model.
+ * CategoryLessController implements the CRUD actions for CategoryLess model.
  */
-class LessonController extends AppAdminController
+class CategoryLessController extends AppAdminController
 {
 
+
     /**
-     * Lists all Lesson models.
+     * Lists all CategoryLess models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new LessonSearch();
+        $searchModel = new CategoryLessSearch();
+        Yii::$app->getView()->params['title'] = '<i class="fa fa-list" aria-hidden="true"></i> Категории: список категорий';
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        Yii::$app->getView()->params['title'] = '<i class="fa fa-list" aria-hidden="true"></i> Статьи: список статей';
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -33,40 +33,30 @@ class LessonController extends AppAdminController
     }
 
     /**
-     * Displays a single Lesson model.
+     * Displays a single CategoryLess model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
-        Yii::$app->getView()->params['title'] = '<i class="fa fa-search" aria-hidden="true"></i> Просмотр статьи';
+        Yii::$app->getView()->params['title'] = '<i class="fa fa-search" aria-hidden="true"></i> Просмотр категории';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Lesson model.
+     * Creates a new CategoryLess model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Lesson();
-        Yii::$app->getView()->params['title'] = '<i class="fa fa-plus-square" aria-hidden="true"></i>Добавить статью';
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->user_id_create = Yii::$app->user->getId();
-            $model->date_create = date("Y-m-d H:i:s");
-            $model->date_update = date("Y-m-d H:i:s");
-            if (empty($model->alias)) {
-                $model->alias = AppAdminController::getTranslit($model->name);
-            }
-            if($model->save()){
-                return $this->redirect(['index']);
-            }
-
+        $model = new CategoryLess();
+        Yii::$app->getView()->params['title'] = '<i class="fa fa-plus-square" aria-hidden="true"></i>Добавить категорию';
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -75,7 +65,7 @@ class LessonController extends AppAdminController
     }
 
     /**
-     * Updates an existing Lesson model.
+     * Updates an existing CategoryLess model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -84,17 +74,10 @@ class LessonController extends AppAdminController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        Yii::$app->getView()->params['title'] = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Обновить статью: '.$model->name;
-        if ($model->load(Yii::$app->request->post())) {
-            $model->user_id_update = Yii::$app->user->getId();
-            $model->date_update = date("Y-m-d H:i:s");
-            if (empty($model->alias)) {
-                $model->alias = AppAdminController::getTranslit($model->name);
-            }
-            if($model->save()){
-                return $this->redirect(['index']);
-            }
+        Yii::$app->getView()->params['title'] = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Обновить категорию: '.$model->name;
 
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -103,7 +86,7 @@ class LessonController extends AppAdminController
     }
 
     /**
-     * Deletes an existing Lesson model.
+     * Deletes an existing CategoryLess model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -117,15 +100,15 @@ class LessonController extends AppAdminController
     }
 
     /**
-     * Finds the Lesson model based on its primary key value.
+     * Finds the CategoryLess model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Lesson the loaded model
+     * @return CategoryLess the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Lesson::findOne($id)) !== null) {
+        if (($model = CategoryLess::findOne($id)) !== null) {
             return $model;
         }
 

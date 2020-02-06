@@ -29,14 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'structure_id',
                 'value'=>function($data){
-                    return $data->category->name ? $data->category->name : 'Корневая категория';
+                    return isset($data->category->name) ? $data->category->name : 'Корневая категория';
                 }
             ],
 //            'technics_id',
             [
                 'attribute'=>'technics_id',
                 'value'=>function($data){
-                    return $data->technics->name ? $data->technics->name : 'Не указано';
+                    return isset($data->technics->name) ? $data->technics->name : 'Не указано';
                 }
             ],
 //            'programs_id',
