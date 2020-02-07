@@ -281,6 +281,17 @@ a:focus{
 }
 
 
+.lesson-content{
+    margin-top: 20px;
+}
+
+#content{
+    padding-bottom: 20px;
+}
+#content .content-a{
+    font-size: 18px;
+    margin-top: 10px;
+}
 
 
 
@@ -288,12 +299,57 @@ a:focus{
 
 
 
+/*#footer-bottom{*/
+/*    bottom: 0;*/
+/*}*/
 
 
+/*========================footer-bottom========================*/
 
 #footer-bottom{
+    height: auto;
+    background-color: #e6ebec;
+    padding-top: 40px;
+    padding-bottom: 50px;
+    border-bottom:1px solid #6F6456;
+    border-top:1px solid #6F6456;
     bottom: 0;
 }
+#footer-bottom div {
+    width: 570px;
+}
+#footer-bottom img{
+    float: left;
+}
+#footer-bottom p{
+    color: #000000;
+    margin-top: 25px;
+    margin-left:20px;
+    float: left;
+}
+
+
+
+/*=========================pagination==============================*/
+#pagination{
+    height: 150px;
+    background-color: #fff;
+    /*border-top: 2px solid #c8c6cc;*/
+}
+
+
+#pagination .pagination-div{
+    margin-top: 35px;
+    margin-left:auto;
+    margin-right:auto;
+    max-width: 270px;
+}
+#pagination .pagination{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
 
 
 /* Large Devices, Wide Screens */

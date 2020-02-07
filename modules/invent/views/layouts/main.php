@@ -60,7 +60,7 @@ ItAppAsset::register($this);
 <!--                                </ul>-->
 <!--                            </li>-->
 
-                            <li><a href="<?=Url::base(true).'/invent'?>">Перемещение</a></li>
+                            <li><a href="<?=Url::base(true).'/invent'?>">Список техники</a></li>
                             <li><a href="<?=Url::base(true).'/invent/rdp'?>">Удаленка</a></li>
                             <li><a href="<?=Url::base(true).'/invent/servers'?>">Серверы</a></li>
                             <li><a href="<?=Url::base(true).'/invent/token'?>">ЭЦП</a></li>
@@ -84,6 +84,15 @@ ItAppAsset::register($this);
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
+        </div>
+    </section>
+    <section id="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="glyphicon glyphicon-home"></i>Главная</a></li>
+                <!--<li><a href="/invent/lesson"><?/*=$this->title*/?></a></li>-->
+                <li class="active"><?=$this->title?></li>
+            </ol>
         </div>
     </section>
     <section id="content">
@@ -112,7 +121,7 @@ ItAppAsset::register($this);
                 <div>
 <!--                    --><?//= Html::img('@web/img/logo-gerb.png')?>
                     <!--                    <i class="fa fa-usb" aria-hidden="true"></i>-->
-                    <p class="text-center">Инвентаризация районных больниц. Проект 2019-2020 года.</p>
+                    <p class="text-center">Программа отдела АСУ. Проект 2019-2020 года.</p>
                 </div>
             </div>
         </div>

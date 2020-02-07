@@ -1,5 +1,5 @@
 <li>
-    <a href="<?=yii\helpers\Url::to(['lesson/view','id' => $category['id']])?>">
+    <a href="<?=yii\helpers\Url::to(['lesson/view-list','id' => $category['id']])?>">
         <?= $category['name']?>
         <?php if( isset($category['childs']) ): ?>
 
