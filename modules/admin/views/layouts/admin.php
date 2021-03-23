@@ -89,6 +89,7 @@ ItAppAsset::register($this);
                             ['label' => 'Характеристики ТО', 'url' => ['/admin/characteristics/index']],
                             ['label' => 'Производители', 'url' => ['/admin/firm/index']],
                             ['label' => 'Техника', 'url' => ['/admin/technics/index']],
+                            ['label' => 'Модели', 'url' => ['/admin/models/index']],
                             ['label' => 'Пользователи', 'url' => ['/admin/user']],
                             ['label' => 'Группы токенов', 'url' => ['/admin/token-group']],
                             ['label' => 'Токены', 'url' => ['/admin/token']],
@@ -116,7 +117,7 @@ ItAppAsset::register($this);
                 <div>
 <!--                    --><?//= Html::img('@web/img/logo-gerb.png')?>
                     <!--                    <i class="fa fa-usb" aria-hidden="true"></i>-->
-                    <p class="text-center">Инвентаризация районных больниц. Проект 2019 года.</p>
+                    <p class="text-center">Инвентаризация районных больниц. Проект 2019 - <?=date('Y')?> года.</p>
                 </div>
             </div>
         </div>

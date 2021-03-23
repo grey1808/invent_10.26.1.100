@@ -20,10 +20,17 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/ui/jquery-ui.css',
         'css/site.css',
         'css/style.css',
+        'css/font-awesome/css/font-awesome.min.css',
     ];
     public $js = [
+        'js/jquery.cookie.js', // куки
+        'js/jquery.dcjqaccordion.2.9.js', // виджет для аккордиона
+        'js/jquery.hoverIntent.minified.js', // виджет для аккордиона
+        'js/ui/jquery-ui.js',
+        'js/main.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

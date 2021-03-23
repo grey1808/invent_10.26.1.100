@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use mihaildev\ckeditor\CKEditor;
+use mihaildev\elfinder\InputFile;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\invent\models\Accounts */
@@ -28,7 +30,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'user')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'comment')->textarea(['maxlength' => true]) ?>
+    <?= $form->field($model, 'comment')->widget(CKEditor::className(), [
+        'editorOptions' => \mihaildev\elfinder\ElFinder::ckeditorOptions('elfinder',[/* Some CKEditor Options */]),
+    ]);?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

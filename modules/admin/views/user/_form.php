@@ -37,7 +37,7 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'user_group_id')->dropDownList(
-        \yii\helpers\ArrayHelper::map(\app\modules\admin\models\UserGroup::find()->all(), 'id', 'name'),
+        \yii\helpers\ArrayHelper::map(\app\modules\admin\models\UserGroup::find()->all(), 'id', 'content'),
         [
             'prompt' => 'Выбор роли',
         ]

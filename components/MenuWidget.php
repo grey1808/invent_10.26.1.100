@@ -36,7 +36,7 @@ class MenuWidget extends Widget
 
         if(isset($menu)) return $menu;
 
-        $this->data = Category::find()->indexBy('id')->orderby(['code_infis'=>SORT_ASC])->asArray()->all();
+        $this->data = Category::find()->indexBy('id')->orderby(['code_infis'=>SORT_ASC,'cabinet' => SORT_ASC])->asArray()->all();
 
         $this->tree = $this->getTree();
 //    debug($this->tree);

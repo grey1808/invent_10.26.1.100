@@ -28,7 +28,8 @@ class Firm extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['name', 'comment'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
+            [['comment'], 'string'],
         ];
     }
 

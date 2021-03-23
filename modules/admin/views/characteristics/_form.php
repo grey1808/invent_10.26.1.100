@@ -51,8 +51,8 @@ use yii\widgets\Pjax;
     <?php Pjax::begin(); ?>
 
     <?php $form1 = ActiveForm::begin([
-        'action' => Url::toRoute(['characteristics/update-dinam', 'id' => $model->id]),
-        'options' => [
+            'action' => Url::toRoute(['characteristics/update-dinam', 'id' => $model->id]),
+            'options' => [
             'data-pjax' => '1'
         ],
         'id' => 'compositionUpdateForm',

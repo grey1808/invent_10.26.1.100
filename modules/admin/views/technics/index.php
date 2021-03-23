@@ -27,19 +27,20 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'tech_group_id',
                 'value'=>function($data){
-                    return $data ->characteristics->name ? $data->characteristics->name : 'Не указанно';
+                    return isset($data ->characteristics->name) ? $data->characteristics->name : 'Не указанно';
                 }
             ],
             [
                 'attribute'=>'category_id',
                 'value'=>function($data){
-                    return $data -> category->name ? $data->category->name : 'Корневая категория';
-                }
+                    return isset($data->category->name) ? $data->category->name : 'Корневая категория';
+                },
+                'filter' => \app\modules\invent\models\Category::getParentsListSelect()
             ],
             [
                 'attribute'=>'firm_id',
                 'value'=>function($data){
-                    return $data -> firm->name ? $data->firm->name : 'Не указанно';
+                    return isset($data -> firm->name) ? $data->firm->name : 'Не указанно';
                 }
             ],
             'name',

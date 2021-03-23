@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * ServersController implements the CRUD actions for Servers model.
  */
-class ServersController extends Controller
+class ServersController extends AppInventController
 {
 
 

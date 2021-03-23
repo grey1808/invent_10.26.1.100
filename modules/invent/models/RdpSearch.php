@@ -17,8 +17,8 @@ class RdpSearch extends Rdp
     public function rules()
     {
         return [
-            [['id', 'structure_id', 'technics_id', 'vipnet'], 'integer'],
-            [['name', 'ipaddress', 'connect_id', 'connect_pass', 'vipnet_name', 'comment'], 'safe'],
+            [['id','technics_id', 'rdp_group_id', 'vipnet'], 'integer'],
+            [['name', 'ipaddress', 'connect_id', 'connect_pass', 'vipnet_name', 'comment','structure_id'], 'safe'],
         ];
     }
 
@@ -38,7 +38,7 @@ class RdpSearch extends Rdp
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$category_id)
     {
         $query = Rdp::find();
 
@@ -56,11 +56,17 @@ class RdpSearch extends Rdp
             return $dataProvider;
         }
 
+        if (isset($category_id)){
+            $this->structure_id = $category_id;
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'structure_id' => $this->structure_id,
+            'structure_id' => $this->getChildrenList($this->structure_id),
+//            'structure_id' => $this->structure_id,
             'technics_id' => $this->technics_id,
+            'rdp_group_id' => $this->rdp_group_id,
             'vipnet' => $this->vipnet,
         ]);
 

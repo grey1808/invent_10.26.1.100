@@ -10,6 +10,40 @@ $this->registerJsFile('@web/js/technicsHelpAdminForm.js');
 //$this->registerJsFile(Yii::getAlias('@web/js/technicsHelpAdminForm.js'),['position' => yii\web\View::POS_END]);
 ?>
 
+<?php
+$js = <<<JS
+
+    $('#technics-firm_id').change(function () {
+        load()
+    })
+
+function load() {
+        var firm_id =  $('#technics-firm_id').val();        
+        $.ajax({
+            type: "POST",
+            url: '/invent/technics/autocomplete', // куда шлем запрос
+            cache: false,
+            dataType: 'json',
+            data: {
+                firm_id: firm_id
+            },
+            success: function (res) {
+                console.log(res)
+                $('#technics-model_id').hide().fadeIn(500).html(res);
+
+            },
+            error: function(request, status, error, html) {
+                console.log(JSON.stringify(request));
+            }
+        });
+}
+     
+
+JS;
+
+$this->registerJs($js);
+
+?>
 <div class="technics-form">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -40,11 +74,22 @@ $this->registerJsFile('@web/js/technicsHelpAdminForm.js');
         echo $form->field($model, 'firm_id')->dropDownList($items,$params);
         ?>
 
+        <?= $form->field($model, 'model')->textInput(['maxlength' => true]) ?>
+
+        <?php
+        $arr = \app\modules\admin\models\Models::find()->where(['firm_id'=>$model->firm_id])->all();
+        $items = \yii\helpers\ArrayHelper::map($arr,'id','name');
+        $params = [
+            'prompt' => 'Выберите параметр'
+        ];
+        echo $form->field($model, 'model_id')->dropDownList($items,$params);
+        ?>
+
+
+
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'invent_number')->textInput() ?>
-
-        <?= $form->field($model, 'model')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'serial')->textInput(['maxlength' => true]) ?>
 

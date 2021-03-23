@@ -2,6 +2,8 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$defaultRoute = \Yii::$app->user->identity->user_group_id === 1 ? 'invent/rdp/index' : 'invent/technics/index';
+
 
 $config = [
     'id' => 'basic',
@@ -9,7 +11,7 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'ru-Ru',
 //    'defaultRoute' => 'invent/technics/index',
-    'defaultRoute' => 'invent/rdp/index',
+    'defaultRoute' => $defaultRoute,
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
@@ -63,6 +65,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+//                'rdp' => 'invent/rdp/index',
+//                'servers' => 'invent/servers/view',
+
             ],
         ],
     ],

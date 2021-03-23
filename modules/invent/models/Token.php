@@ -16,6 +16,7 @@ use yii\helpers\ArrayHelper;
  * @property string $enddate Дата окончания действия
  * @property string $token_nubmer Номер токена
  * @property int $user_id Последний изменивший пользователь
+ * @property int $position_id Должность
  * @property string $comment Комментарий
  */
 class Token extends \yii\db\ActiveRecord
@@ -32,9 +33,18 @@ class Token extends \yii\db\ActiveRecord
     {
         return $this->hasOne(TokenGroup::className(),['id'=>'token_group_id']);
     }
+    public function getPosition ()
+    {
+        return $this->hasOne(TokenGroup::className(),['id'=>'position_id']);
+    }
 
     public static function getTokenGroupList() {
         $parents = \app\modules\admin\models\TokenGroup::find()->all();
+
+        return ArrayHelper::map($parents, 'id', 'name');
+    }
+    public static function getPositionList() {
+        $parents = \app\modules\invent\models\Position::find()->all();
 
         return ArrayHelper::map($parents, 'id', 'name');
     }
@@ -46,7 +56,7 @@ class Token extends \yii\db\ActiveRecord
     {
         return [
             [['token_group_id', 'fullname', 'startdate', 'enddate'], 'required'],
-            [['token_group_id', 'user_id'], 'integer'],
+            [['token_group_id', 'user_id', 'position_id'], 'integer'],
             [['startdate', 'enddate'], 'safe'],
             [['fullname', 'token_nubmer', 'comment'], 'string', 'max' => 255],
         ];
@@ -65,6 +75,7 @@ class Token extends \yii\db\ActiveRecord
             'enddate' => 'Дата окончания',
             'token_nubmer' => 'Номер',
             'user_id' => 'Пользователь',
+            'position_id' => 'Должность',
             'comment' => 'Комментарий',
         ];
     }

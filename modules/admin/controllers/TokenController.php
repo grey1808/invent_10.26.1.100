@@ -55,8 +55,14 @@ class TokenController extends AppAdminController
         Yii::$app->getView()->params['title'] = '<i class="fa fa-plus-square" aria-hidden="true"></i>Добавить токен';
         $model = new Token();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->user_id = Yii::$app->user->getId();
+            $model->startdate = Yii::$app->formatter->asDate($model->startdate, 'php:Y-m-d');
+            $model->enddate = Yii::$app->formatter->asDate($model->enddate, 'php:Y-m-d');
+
+            if ($model->save()){
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('create', [
@@ -75,8 +81,14 @@ class TokenController extends AppAdminController
     {
         $model = $this->findModel($id);
         Yii::$app->getView()->params['title'] = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Обновить токен : '.$model->fullname;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->user_id = Yii::$app->user->getId();
+            $model->startdate = Yii::$app->formatter->asDate($model->startdate, 'php:Y-m-d');
+            $model->enddate = Yii::$app->formatter->asDate($model->enddate, 'php:Y-m-d');
+
+            if ($model->save()){
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('update', [

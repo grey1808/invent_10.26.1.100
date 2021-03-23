@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <form method="get" action="/invent/lesson/search" role="search">
                             <div class="col-md-8 search-input">
                                 <span class="twitter-typeahead">
-                                    <input class="form-control" name="q" placeholder="Введие текст поиска...">
+                                    <input class="form-control" name="q" placeholder="Введите текст поиска...">
                                 </span>
                             </div>
                             <div class="col-md-4 search-btn-div">
@@ -68,6 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="menu">
                     <?= \app\components\CategorylessWidget::widget(['tpl' => 'menu_less', 'model' => $model])?>
                 </div>
+
             </div>
             <div class="col-md-9">
                 <?php if (isset($lesson)):?>

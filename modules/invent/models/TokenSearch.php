@@ -17,7 +17,7 @@ class TokenSearch extends Token
     public function rules()
     {
         return [
-            [['id', 'token_group_id', 'user_id'], 'integer'],
+            [['id', 'token_group_id', 'user_id', 'position_id'], 'integer'],
             [['fullname', 'startdate', 'enddate', 'token_nubmer', 'comment'], 'safe'],
         ];
     }
@@ -60,13 +60,16 @@ class TokenSearch extends Token
         $query->andFilterWhere([
             'id' => $this->id,
             'token_group_id' => $this->token_group_id,
-            'startdate' => $this->startdate,
-            'enddate' => $this->enddate,
+            'position_id' => $this->position_id,
+//            'startdate' => $this->startdate,
+//            'enddate' => \Yii::$app->formatter->asDate($this->enddate,'php:Y-m-d'),
             'user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'fullname', $this->fullname])
             ->andFilterWhere(['like', 'token_nubmer', $this->token_nubmer])
+            ->andFilterWhere(['like', 'startdate', $this->startdate])
+            ->andFilterWhere(['like', 'enddate', $this->enddate])
             ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;

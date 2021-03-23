@@ -22,6 +22,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'code_infis')->textInput() ?>
 
+    <?= $form->field($model, 'cabinet')->textInput() ?>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>

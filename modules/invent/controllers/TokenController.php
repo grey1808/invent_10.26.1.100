@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * TokenController implements the CRUD actions for Token model.
  */
-class TokenController extends Controller
+class TokenController extends AppInventController
 {
 
 
@@ -24,7 +24,7 @@ class TokenController extends Controller
     {
         $searchModel = new TokenSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $dataProvider->pagination = false; // отключить пагинацию
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -53,8 +53,14 @@ class TokenController extends Controller
     {
         $model = new Token();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->user_id = Yii::$app->user->getId();
+            $model->startdate = Yii::$app->formatter->asDate($model->startdate, 'php:Y-m-d');
+            $model->enddate = Yii::$app->formatter->asDate($model->enddate, 'php:Y-m-d');
+
+            if ($model->save()){
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('create', [
@@ -73,8 +79,14 @@ class TokenController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->user_id = Yii::$app->user->getId();
+            $model->startdate = Yii::$app->formatter->asDate($model->startdate, 'php:Y-m-d');
+            $model->enddate = Yii::$app->formatter->asDate($model->enddate, 'php:Y-m-d');
+            if ($model->save()){
+                return $this->redirect(['index']);
+            }
+
         }
 
         return $this->render('update', [

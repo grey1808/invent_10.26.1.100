@@ -40,44 +40,34 @@ ItAppAsset::register($this);
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="<?=Url::base(true).'/invent/rdp'?>">Инв АСУ</a>
+                        <a class="navbar-brand" href="<?=Url::base(true)?>">Помощник АСУ <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                        </a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-<!--                            <li class="dropdown">-->
-<!--                                <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Инвенторизация <span class="caret"></span></a>-->
-<!--                                <ul class="dropdown-menu">-->
-<!--                                    <li><a href="--><?//=Url::base(true).'/invent/rdp'?><!--">Удаленка</a></li>-->
-<!--                                    <li><a href="--><?//=Url::base(true).'/invent'?><!--">Перемещение</a></li>-->
-<!--                                    <li><a href="#">ЭЦП</a></li>-->
-<!--                                    <li><a href="#">Отчеты</a></li>-->
-<!--                                    <li role="separator" class="divider"></li>-->
-<!--                                    <li><a href="--><?//=Url::base(true).'/admin'?><!--">Админка</a></li>-->
-<!--                                    <li role="separator" class="divider"></li>-->
-<!--                                    <li><a href="#">One more separated link</a></li>-->
-<!--                                </ul>-->
-<!--                            </li>-->
 
                             <li><a href="<?=Url::base(true).'/invent'?>">Список техники</a></li>
-                            <li><a href="<?=Url::base(true).'/invent/rdp'?>">Удаленка</a></li>
-                            <li><a href="<?=Url::base(true).'/invent/servers'?>">Серверы</a></li>
-                            <li><a href="<?=Url::base(true).'/invent/token'?>">ЭЦП</a></li>
-                            <li><a href="<?=Url::base(true).'/invent/accounts'?>">Аккаунты</a></li>
+                            <?php if (Yii::$app->user->identity->user_group_id == 1):?>
+                                <li><a href="<?=Url::base(true).'/invent/rdp'?>">Удаленка</a></li>
+                                <li><a href="<?=Url::base(true).'/invent/servers'?>">Серверы</a></li>
+                                <li><a href="<?=Url::base(true).'/invent/token'?>">ЭЦП</a></li>
+                                <li><a href="<?=Url::base(true).'/invent/accounts'?>">Аккаунты</a></li>
+                            <?php endif;?>
                             <li><a href="<?=Url::base(true).'/invent/lesson'?>">Статьи</a></li>
-<!--                            <li><a href="#">Отчеты</a></li>-->
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-
-                            <li><a href="<?=Url::base(true).'/admin'?>">Админка</a></li>
+                            <?php if (Yii::$app->user->identity->user_group_id == 1):?>
+                                <li><a href="<?=Url::base(true).'/admin'?>">Админка</a></li>
+                            <?php endif;?>
 <!--                            <li><a href="#">Помощь</a></li>-->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= Yii::$app->user->identity['username']?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="<?=\yii\helpers\Url::to(['/site/logout'])?>">Выйти</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#">Доп ссылка</a></li>
+                                    <li><a href="<?=Url::base(true).'/invent/reports'?>">Отчеты</a></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -121,7 +111,7 @@ ItAppAsset::register($this);
                 <div>
 <!--                    --><?//= Html::img('@web/img/logo-gerb.png')?>
                     <!--                    <i class="fa fa-usb" aria-hidden="true"></i>-->
-                    <p class="text-center">Программа отдела АСУ. Проект 2019-2020 года.</p>
+                    <p class="text-center">Программа отдела АСУ. Проект 2019-<?=date('Y')?> года.</p>
                 </div>
             </div>
         </div>

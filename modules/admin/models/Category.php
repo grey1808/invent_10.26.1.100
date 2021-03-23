@@ -35,7 +35,7 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['parent_id', 'code_infis'], 'integer'],
+            [['parent_id', 'code_infis','cabinet'], 'integer'],
             [['name','alias', 'comment'], 'string', 'max' => 255],
         ];
     }
@@ -49,6 +49,7 @@ class Category extends \yii\db\ActiveRecord
             'id' => 'ID',
             'parent_id' => 'Родительская категория',
             'code_infis' => 'Код ИНФИС',
+            'cabinet' => 'Кабинет',
             'name' => 'Наименование подразделения',
             'comment' => 'Комментарий',
         ];

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\invent\models\Token */
@@ -21,13 +22,22 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fullname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'startdate')->textInput() ?>
+    <?= $form->field($model, 'position_id')->dropDownList(
+        \yii\helpers\ArrayHelper::map(\app\modules\invent\models\Position::find()->all(), 'id', 'name'),
+        [
+            'prompt' => 'Выбор группы',
+        ]
+    ) ?>
 
-    <?= $form->field($model, 'enddate')->textInput() ?>
+    <?= $form->field($model, 'startdate')->widget(DatePicker::class,[
+        'pluginOptions' => [
+            'todayHighlight' => true
+        ]
+    ]) ?>
+
+    <?= $form->field($model, 'enddate')->widget(DatePicker::class) ?>
 
     <?= $form->field($model, 'token_nubmer')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'user_id')->textInput() ?>
 
     <?= $form->field($model, 'comment')->textInput(['maxlength' => true]) ?>
 

@@ -40,7 +40,7 @@ class TechnicsSearch extends Technics
      */
     public function search($params)
     {
-        $query = Technics::find();
+        $query = Technics::find()->where(['deleted' => 0]);
 
         // add conditions that should always apply here
 
@@ -60,14 +60,15 @@ class TechnicsSearch extends Technics
         $query->andFilterWhere([
             'id' => $this->id,
             'tech_group_id' => $this->tech_group_id,
-            'category_id' => $this->category_id,
+            'category_id' => $this->getChildrenList($this->category_id),
             'firm_id' => $this->firm_id,
-            'invent_number' => $this->invent_number,
+//            'invent_number' => $this->invent_number,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'model', $this->model])
             ->andFilterWhere(['like', 'serial', $this->serial])
+            ->andFilterWhere(['like', 'invent_number', $this->invent_number])
             ->andFilterWhere(['like', 'comment', $this->comment]);
 
         return $dataProvider;

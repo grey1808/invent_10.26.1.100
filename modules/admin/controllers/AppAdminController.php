@@ -15,16 +15,12 @@ class AppAdminController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-//                'only' => ['login', 'logout', 'signup'],
                 'rules' => [
-//                    [
-//                        'allow' => true,
-//                        'actions' => ['login', 'signup'],
-//                        'roles' => ['?'],
-//                    ],
                     [
                         'allow' => true,
-//                        'actions' => ['logout'],
+                        'matchCallback' => function($rule, $action){
+                            return \Yii::$app->user->identity->user_group_id === 1;
+                        },
                         'roles' => ['@'],
                     ],
                 ],

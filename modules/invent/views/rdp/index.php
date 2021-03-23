@@ -10,83 +10,98 @@ use yii\grid\GridView;
 $this->title = 'Удаленные подключения';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<div class="header-h1">
+    <h1><?= Html::encode($this->title) ?></h1>
+</div>
 <div class="rdp-index">
 
-    <div class="header-h1">
-        <h1><?= Html::encode($this->title) ?></h1>
-    </div>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="row">
+        <div class="col-md-3">
+            <!--            <div class="header-h1">-->
+            <!--                <h1>Структура</h1>-->
+            <!--            </div>-->
+            <div class="menu">
+                <ul id="accordion_menu">
+                    <?= \app\components\MenuWidget::widget(['tpl' => 'menu_rdp'])?>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
 
-    <p>
-        <?= Html::a('Добавить RDP', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+            <p>
+                <?= Html::a('Добавить RDP', ['create'], ['class' => 'btn btn-success']) ?>
+            </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
 //            'id',
-            [
-                'attribute'=>'name',
-                'headerOptions' => ['width' => '300'],
-            ],
-            'ipaddress',
-            'connect_id',
+                    [
+                        'attribute'=>'name',
+                        'headerOptions' => ['width' => '300'],
+                    ],
+                    'ipaddress',
+                    'connect_id',
 //            'connect_pass',
-            [
-                'attribute'=>'structure_id',
+                    [
+                        'attribute'=>'structure_id',
 //                'headerOptions' => ['width' => '350'],
-                'value'=>function($data){
-                    return isset($data->categoryall->name) ? $data->categoryall->name : 'Корневая категория';
-                },
-                'filter' => \app\modules\invent\models\Category::getParentsList()
-            ],
-            [
-                'attribute'=>'technics_id',
-                'value'=>function($data){
-                    return isset($data->technics->name) ? $data->technics->name : 'Не указанно';
-                }
-            ],
-            [
-                'attribute'=>'vipnet',
-                'value'=>function($data){
-                    return $data->vipnet == 1 ? 'VipNet':'Не задан';
-                },
-                'filter' => array("1"=>"Установлен","0"=>"Не установлен"),
-            ],
+                        'value'=>function($data){
+                            return isset($data->categoryall->name) ? $data->categoryall->name : 'Корневая категория';
+                        },
+//                        'filter' => \app\modules\invent\models\Category::getParentsList()
+                        'filter' => false
+                    ],
+                    [
+                        'attribute'=>'technics_id',
+                        'value'=>function($data){
+                            return isset($data->technics->name) ? $data->technics->name : 'Не указанно';
+                        }
+                    ],
+                    [
+                        'attribute'=>'vipnet',
+                        'value'=>function($data){
+                            return $data->vipnet == 1 ? 'VipNet':'Не задан';
+                        },
+                        'filter' => array("1"=>"Установлен","0"=>"Не установлен"),
+                    ],
 //            'vipnet_name',
-            'comment',
+                    'comment',
 
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'header'=>'Действия',
-                'headerOptions' => ['width' => '100'],
-                'template' => '{view} {update} {delete}',
-                'buttons' => [
-                    'view' => function ($url) {
-                        return Html::a(
-                            '<button type="button" class="btn btn-info"title="Просмотр"><i class="glyphicon glyphicon-eye-open"></i></button>',
-                            $url);
-                    },
-                    'update' => function ($url) {
-                        return Html::a(
-                            '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalTrEdit" title="Редактировать"><i class="glyphicon glyphicon-pencil"></i></button>',
-                            $url);
-                    },
-                    'delete' => function ($url) {
-                        return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url,
-                            [
-                                'class' => 'btn btn-danger btn-a',
-                                'data' => [
-                                    'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
-                                    'method' => 'post',
-                                ],
-                            ]);
-                    },
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'header'=>'Действия',
+                        'headerOptions' => ['width' => '100'],
+                        'template' => '{view} {update} {delete}',
+                        'buttons' => [
+                            'view' => function ($url) {
+                                return Html::a(
+                                    '<button type="button" class="btn btn-info"title="Просмотр"><i class="glyphicon glyphicon-eye-open"></i></button>',
+                                    $url);
+                            },
+                            'update' => function ($url) {
+                                return Html::a(
+                                    '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalTrEdit" title="Редактировать"><i class="glyphicon glyphicon-pencil"></i></button>',
+                                    $url);
+                            },
+                            'delete' => function ($url) {
+                                return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url,
+                                    [
+                                        'class' => 'btn btn-danger btn-a',
+                                        'data' => [
+                                            'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+                                            'method' => 'post',
+                                        ],
+                                    ]);
+                            },
+                        ],
+                    ],
                 ],
-            ],
-        ],
-    ]); ?>
+            ]); ?>
+        </div>
+    </div>
 </div>

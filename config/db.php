@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=10.226.1.130;dbname=invent',
-    'username' => 'dbuser',
-    'password' => 'dbpassword',
+    'dsn' => 'mysql:host=10.26.1.100;dbname=invent',
+    'username' => 'invent',
+    'password' => '[thdgecnsyt',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)

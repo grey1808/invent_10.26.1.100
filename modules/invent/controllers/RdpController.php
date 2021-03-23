@@ -21,10 +21,10 @@ class RdpController extends AppInventController
      * Lists all Rdp models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($category_id = false)
     {
         $searchModel = new RdpSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$category_id);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

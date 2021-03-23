@@ -37,6 +37,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
+                'attribute'=>'rdp_group_id',
+                'value'=>function($data){
+                    return isset($data->rdpGroup->name) ? $data->rdpGroup->name : 'Не указан';
+                },
+                'filter' => \app\modules\invent\models\Rdp::getRdpList()
+            ],
+            [
                 'attribute'=>'technics_id',
                 'value'=>function($data){
                     return isset($data->technics->name) ? $data->technics->name : 'Не указано';

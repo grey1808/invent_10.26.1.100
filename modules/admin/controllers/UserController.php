@@ -83,7 +83,9 @@ class UserController extends AppAdminController
         Yii::$app->getView()->params['title'] = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Обновить пользователя: '.$model->username;
 
         if ($model->load(Yii::$app->request->post())) {
-            $password = Yii::$app->security->generatePasswordHash($model->password);
+            if(strlen($model->password) < 20 ){
+                $password = Yii::$app->security->generatePasswordHash($model->password);
+            }
             $model->password = $password;
             $date = Yii::$app->formatter->asDate($model->birthdate, 'php:Y-m-d');
             $model->birthdate = $date;

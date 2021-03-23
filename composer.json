@@ -21,7 +21,8 @@
         "wbraganca/yii2-dynamicform": "*",
         "kartik-v/yii2-widget-datepicker": "dev-master",
         "mihaildev/yii2-ckeditor": "*",
-        "mihaildev/yii2-elfinder": "*"
+        "mihaildev/yii2-elfinder": "*",
+        "kartik-v/yii2-widgets": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

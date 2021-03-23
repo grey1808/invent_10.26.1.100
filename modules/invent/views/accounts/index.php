@@ -36,7 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //'url_4:url',
             //'password',
             //'user',
-            'comment',
+            [
+                'attribute'=>'comment',
+                'format'=>'raw',
+//                'headerOptions' => ['width' => '400'],
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',

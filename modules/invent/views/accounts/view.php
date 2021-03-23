@@ -40,7 +40,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'login',
             'password',
             'user',
-            'comment',
+            [
+                'attribute'=>'comment',
+                'format'=>'raw',
+            ],
         ],
     ]) ?>
 

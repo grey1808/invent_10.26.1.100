@@ -14,9 +14,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ipaddress')->textInput(['maxlength' => true]) ?>
+    <?php
+    $arr = \app\modules\admin\models\RdpGroup::find()->all();
+    $items = \yii\helpers\ArrayHelper::map($arr,'id','name');
+    $params = [
+        'prompt' => 'Выберите параметр'
+    ];
+    echo $form->field($model, 'rdp_group_id')->dropDownList($items,$params);
+    ?>
 
-<!--    --><?//= $form->field($model, 'structure_id')->textInput() ?>
+    <?= $form->field($model, 'ipaddress')->textInput(['maxlength' => true])->widget(\yii\widgets\MaskedInput::className(),['mask' => '99[9].9[9][9].9.[9][9][9]',]) ?>
+
 
     <div class="form-group field-rdp-structure_id has-success">
         <label class="control-label" for="rdp-structure_id">Категория</label>

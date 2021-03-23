@@ -2,9 +2,10 @@
 
 namespace app\modules\invent\models;
 
+use app\modules\invent\models\Technics;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\invent\models\Technics;
+use Yii;
 
 /**
  * TechnicsSearch represents the model behind the search form of `app\modules\invent\models\Technics`.
@@ -17,8 +18,8 @@ class TechnicsSearch extends Technics
     public function rules()
     {
         return [
-            [['id', 'tech_group_id', 'category_id', 'firm_id'], 'integer'],
-            [['name', 'invent_number', 'model', 'serial', 'params', 'comment'], 'safe'],
+            [['id', 'tech_group_id', 'firm_id', 'invent_number', 'model_id'], 'integer'],
+            [['name', 'model', 'serial', 'params', 'comment', 'category_id','parent_id'], 'safe'],
         ];
     }
 
@@ -38,9 +39,18 @@ class TechnicsSearch extends Technics
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$category_id)
     {
-        $query = Technics::find();
+        $query = Technics::find()->where(['deleted' => 0]);
+
+//        if (!$category_id){
+//            $query = Technics::find();
+//        }else{
+////            $query = Technics::find()->where(['category_id'=>$category_id]);
+//            $query = Technics::find()->andFilterWhere(['category_id', $this->getParentList($this->category_id)]);
+//        }
+
+
 
         // add conditions that should always apply here
 
@@ -56,12 +66,23 @@ class TechnicsSearch extends Technics
             return $dataProvider;
         }
 
+        if (isset($category_id)){
+            $this->category_id = $category_id;
+        }
+        $request = Yii::$app->request->get('TechnicsSearch');
+//        if ($request){
+//            $this->category_id = $request['category_id'];
+//        }
+
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'tech_group_id' => $this->tech_group_id,
-            'category_id' => $this->category_id,
+            'category_id' => $this->getChildrenList($this->category_id),
+//            'category_id' => $this->getParentList($category_id),
             'firm_id' => $this->firm_id,
+            'model_id' => $this->model_id,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

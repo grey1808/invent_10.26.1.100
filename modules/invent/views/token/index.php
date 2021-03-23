@@ -17,11 +17,16 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+<div class="container">
+
     <p>
         <?= Html::a('Добавить ЭЦП', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
     <?= GridView::widget([
+        'pager' => [
+            'firstPageLabel' => 'Начало',
+            'lastPageLabel' => 'Конец',
+        ],
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -30,30 +35,59 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'id',
             [
                 'attribute'=>'token_group_id',
-                'options' => ['width' => '200'],
+                'options' => ['width' => '400'],
                 'value'=>function($data){
                     return $data->groupToken->name;
                 },
                 'filter' => \app\modules\invent\models\Token::getTokenGroupList()
             ],
-            'fullname',
+//            'fullname',
             [
-                'attribute' => 'startdate',
-                'format' =>  ['date', 'dd.MM.Y'],
-                'options' => ['width' => '200']
+                'attribute'=>'fullname',
+                'options' => ['width' => '800']
             ],
+//            [
+//                'attribute'=>'startdate',
+//                'options' => ['width' => '600'],
+//                'format'=>'text',
+//                'filter'=> \kartik\widgets\DatePicker::widget([
+//                    'name'  => 'TokenSearch[startdate]',
+//                    'pluginOptions'=>['format' => 'yyyy-mm','autoclose' => true,'minViewMode' => 1,]]),
+//                'content'=>function($data){
+//                    return Yii::$app->formatter->asDate($data['startdate'],'php:d.m.Y');
+//                }
+//            ],
             [
-                'attribute' => 'enddate',
-                'format' =>  ['date', 'dd.MM.Y'],
-                'options' => ['width' => '200']
+                'attribute'=>'enddate',
+                'options' => ['width' => '600'],
+                'format'=>'text',
+                'filter'=> \kartik\widgets\DatePicker::widget([
+                    'name'  => 'TokenSearch[enddate]',
+                    'pluginOptions'=>['format' => 'yyyy-mm','autoclose' => true,'minViewMode' => 1,]]),
+                'content'=>function($data){
+                    return Yii::$app->formatter->asDate($data['enddate'],'php:d.m.Y');
+                }
             ],
-            'token_nubmer',
+//            [
+//                'attribute'=>'token_nubmer',
+//                'options' => ['width' => '300']
+//            ],
             //'user_id',
-            'comment',
+//            'comment',
+
+            [
+                'attribute'=>'position_id',
+                'options' => ['width' => '1000'],
+                'content'=>function($data){
+                    return (int)$data['enddate'] === 1 ? 'Врач' : 'Фельдшер';
+                }
+            ],
+
 
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header'=>'Действия',
+                'options' => ['width' => '300'],
                 'template' => '{view} {update} {delete}',
                 'buttons' => [
                     'view' => function ($url) {
@@ -81,3 +115,4 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+

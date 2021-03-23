@@ -58,9 +58,12 @@ class TechnicsController extends AppAdminController
     {
         $model = new Technics();
         Yii::$app->getView()->params['title'] = '<i class="fa fa-plus-square" aria-hidden="true"></i>Добавить единицу техники';
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->create_person_id = Yii::$app->user->identity->getId();
+            $model->create_datetime = date('Y-m-d H:s');
+            if($model->save()){
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('create', [
@@ -80,8 +83,12 @@ class TechnicsController extends AppAdminController
         $model = $this->findModel($id);
         Yii::$app->getView()->params['title'] = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Обновить единицу техники: '.$model->name;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->update_person_id = Yii::$app->user->identity->getId();
+            $model->update_datetime = date('Y-m-d H:s');
+            if($model->save()){
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('update', [

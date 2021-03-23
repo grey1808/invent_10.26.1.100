@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * AccountsController implements the CRUD actions for Accounts model.
  */
-class AccountsController extends Controller
+class AccountsController extends AppInventController
 {
 
 

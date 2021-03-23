@@ -30,15 +30,43 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'tech_group_id',
-            'category_id',
-            'firm_id',
+
+            [
+                'attribute'=>'tech_group_id',
+                'value'=>function($data){
+                    return $data ->characteristics->name ? $data->characteristics->name : 'Не указанно';
+                },
+             ],
+            [
+                'attribute'=>'category_id',
+                'value'=>function($data){
+                    return isset($data->category->name) ? $data->category->name : 'Не указанно';
+                },
+            ],
+            [
+                'attribute'=>'firm_id',
+                'value'=>function($data){
+                    return isset($data->firm->name) ? $data->firm->name : 'Не указанно';
+                },
+            ],
             'name',
             'invent_number',
             'model',
             'serial',
             'params:ntext',
             'comment',
+            [
+                'attribute'=>'create_person_id',
+                'value'=>function($data){
+                    return isset($data->usercreate->username) ? $data->usercreate->username : 'Не указанно';
+                }
+            ],
+            [
+                'attribute'=>'update_person_id',
+                'value'=>function($data){
+                    return isset($data->userupdate->username) ? $data->userupdate->username : 'Не указанно';
+                }
+            ],
         ],
     ]) ?>
 

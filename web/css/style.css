@@ -41,6 +41,24 @@ a:focus{
 }
 
 
+
+.font-weight-bold {
+    font-weight: 700;
+}
+.font-weight-normal {
+    font-weight: 400;
+}
+.font-weight-light {
+    font-weight: 300;
+}
+.font-italic {
+    font-style: italic;
+}
+.text-underline {
+    text-decoration: underline;
+}
+
+
 #header {
     background-color: #4F5E90;
     color: #ffffff;
@@ -86,9 +104,12 @@ a:focus{
     padding-left: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 20px;
+    height: 550px;
+    overflow: auto;
 }
+
 
 #content .header-h1{
     background-color: #3CA5D5;
@@ -347,6 +368,20 @@ a:focus{
 #pagination .pagination{
     margin-left:auto;
     margin-right:auto;
+}
+
+
+span.dcjq-count{
+    color: green;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.badge{
+    margin-right: 10px;
+}
+
+#accordion_menu .active:last-child{
+    color: #e91e63 ;
 }
 
 

@@ -44,17 +44,35 @@ class Category extends \yii\db\ActiveRecord
         return ArrayHelper::map($parents, 'id', 'name');
     }
     /* Геттер для массива значение категорий */
+
+    public function getParentId(){
+
+    }
+
+
     public static function getParentsListSelect() {
         $parents = Category::find()->all();
         $parents = \app\components\MenuWidget::widget(['tpl' => 'select_filter', 'model' => $parents]);
         $parents = '
                     <select class="form-control" name="TechnicsSearch[category_id]">
-                        <option value="0"></option>
+                        <option></option>
 
         ';
         $parents .= \app\components\MenuWidget::widget(['tpl' => 'select_filter', 'model' => $parents]).'</select>';
 
         return $parents;
+    }
+
+    public static function getParentsList2()
+    {
+        // Выбираем только те категории, у которых есть дочерние категории
+        $parents = Category::find()
+            ->select(['c.id', 'c.name'])
+            ->join('JOIN', 'category c', 'category.parent_id = c.id')
+            ->distinct(true)
+            ->all();
+
+        return ArrayHelper::map($parents, 'id', 'name');
     }
 
     /**
